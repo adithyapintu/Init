@@ -1,6 +1,7 @@
 package com.ecommerce.init.Controller;
 
 import com.ecommerce.init.DTO.ItemDTO;
+import com.ecommerce.init.DTO.SingleItemDTO;
 import com.ecommerce.init.Service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,8 +18,8 @@ public class ItemController {
     @Autowired
     ItemService service;
     @GetMapping(value="/getItem")
-    public String getItem(@RequestParam int id){
-        return "";
+    public SingleItemDTO getItem(@RequestParam int id){
+        return service.getItem(id);
     }
 
     @GetMapping(value = "/test")

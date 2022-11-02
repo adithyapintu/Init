@@ -1,6 +1,7 @@
 package com.ecommerce.init.Service;
 
 import com.ecommerce.init.DTO.ItemDTO;
+import com.ecommerce.init.DTO.SingleItemDTO;
 import com.ecommerce.init.Entities.Items;
 import com.ecommerce.init.Respository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,25 @@ public class ItemService {
                 .map(this::convertDataIntoDTO)
                 .collect(Collectors.toList());
     }
-    // create convertDataIntoDTO() method that returns UserLocationDTO
+
+    public SingleItemDTO getItem(int id){
+        Items item = itemRepository.findById(id);
+
+        SingleItemDTO singleItemDTO = convertIntoSingle(item) ;
+        return  singleItemDTO;
+    }
+
+    private SingleItemDTO convertIntoSingle(Items item) {
+        SingleItemDTO itemDto = new SingleItemDTO();
+        itemDto.setItemId(item.getItemId());
+        itemDto.setItemsSold(item.getItemSold());
+        itemDto.setItemName(item.getItemName());
+        itemDto.setItemPrice(item.getItemPrice());
+        itemDto.setRating(item.getRating());
+
+        return itemDto;
+    }
+
     private ItemDTO convertDataIntoDTO (Items itemData) {
 
         ItemDTO dto = new ItemDTO();
