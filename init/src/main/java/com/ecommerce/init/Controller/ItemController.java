@@ -17,6 +17,8 @@ public class ItemController {
 
     @Autowired
     ItemService service;
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value="/getItem")
     public SingleItemDTO getItem(@RequestParam int id){
         return service.getItem(id);
